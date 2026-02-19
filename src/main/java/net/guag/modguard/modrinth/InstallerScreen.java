@@ -43,7 +43,7 @@ public class InstallerScreen extends Screen {
                         .build()
         );
 
-        this.searchBox = new TextFieldWidget(this.textRenderer, 0, 0, this.width, 20, Text.of("Search Box"));
+        this.searchBox = new TextFieldWidget(this.textRenderer, 30, 5, this.width-35, 20, Text.of("Search Box"));
         this.searchBox.setChangedListener(query -> { this.searchQuery = query.toLowerCase(); });
         this.searchBox.setMaxLength(100);
         this.searchBox.setEditable(true);
@@ -51,14 +51,14 @@ public class InstallerScreen extends Screen {
         this.addSelectableChild(this.searchBox);
         this.setInitialFocus(this.searchBox);
 
-        this.limitEntry = new TextFieldWidget(this.textRenderer, 0, 25, (this.width/2)-5, 20, Text.of("Limit Entry Box"));
+        this.limitEntry = new TextFieldWidget(this.textRenderer, 5, 30, (this.width/2)-10, 20, Text.of("Limit Entry Box"));
         this.limitEntry.setChangedListener(query -> { this.limitQuery = query.toLowerCase(); });
         this.limitEntry.setMaxLength(100);
         this.limitEntry.setEditable(true);
         this.limitEntry.setTooltip(Tooltip.of(Text.of("Limit the number of search results...")));
         this.addSelectableChild(this.limitEntry);
 
-        this.offsetEntry = new TextFieldWidget(this.textRenderer, this.width/2, 25, (this.width/2)-5, 20, Text.of("Offset Entry Box"));
+        this.offsetEntry = new TextFieldWidget(this.textRenderer, this.width/2, 30, this.width/2-5, 20, Text.of("Offset Entry Box"));
         this.offsetEntry.setChangedListener(query -> { this.offsetQuery = query.toLowerCase(); });
         this.offsetEntry.setMaxLength(100);
         this.offsetEntry.setEditable(true);
@@ -68,13 +68,20 @@ public class InstallerScreen extends Screen {
         this.addDrawableChild(this.searchBox);
         this.addDrawableChild(this.limitEntry);
         this.addDrawableChild(this.offsetEntry);
+
+        //Styling
+        this.searchBox.setDrawsBackground(false);
+        this.limitEntry.setDrawsBackground(false);
+        this.offsetEntry.setDrawsBackground(false);
+
     }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta){
         super.render(context, mouseX, mouseY, delta);
+        context.fill(30, 5, this.width - 5, 25, 0xAA1E1E1E); // dark rounded-style background
         context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer, Text.of(finalJSON), 0, this.height-30, 0xFFFFFFFF);
-        context.drawTexture(RenderPipelines.GUI_TEXTURED, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+        context.drawTexture(RenderPipelines.GUI_TEXTURED, Identifier.of("modguard", "textures/gui/modrinthfavicon.png"), 5, 5, 0, 0, 20, 20, 20, 20);
     }
 
     public void run(){
