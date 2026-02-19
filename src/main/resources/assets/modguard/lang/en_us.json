@@ -1,4 +1,10 @@
 {
-  "key.ModGuard.opengui": "Mods",
-  "button.ModGuard.callAPI": "Call API"
+  "button.ModGuard.opengui": "Mods",
+  "button.ModGuard.callAPI": "Call API",
+
+  "button.ModGuard.nextpg": "Next",
+  "button.ModGuard.prevpg": "Previous",
+
+  "key.ModGuard.open_ui": "Open UI",
+  "ModGuard:keybinds": "ModGuard"
 }

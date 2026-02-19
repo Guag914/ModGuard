@@ -17,7 +17,8 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.guag.modguard.ModGuard"
+			"net.guag.modguard.ModGuard",
+			"net.guag.modguard.modrinth.ModGuardUIClient"
 		]
 	},
 	"mixins": [

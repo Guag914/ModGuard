@@ -18,7 +18,6 @@ public class ModrinthAPIFetch {
     private String query;
 
     //Used for page data
-    public Integer pageNumber = 1;
     public Integer offset;
     public Integer limit;
 
@@ -37,11 +36,11 @@ public class ModrinthAPIFetch {
             //Get user query/facets (expand to use minecraft inputs with text widget later)
             //System.out.println("Enter a search query: "); query = sc.nextLine().trim();;
 
-            while (true){
-                System.out.println("Enter a facet name: "); facetName = sc.nextLine().trim(); if (facetName.equals("break")) break; //See modrinth documentation
-                System.out.println("Enter " + facetName + "'s content: "); facetContent = sc.nextLine().trim();;
-                facets.put(facetName, facetContent);
-            }
+//            while (true){
+//                System.out.println("Enter a facet name: "); facetName = sc.nextLine().trim(); if (facetName.equals("break")) break; //See modrinth documentation
+//                System.out.println("Enter " + facetName + "'s content: "); facetContent = sc.nextLine().trim();;
+//                facets.put(facetName, facetContent);
+//            }
 
             //Flags
             //System.out.println("Enter an offset: "); offset = sc.nextInt(); sc.nextLine();
@@ -60,6 +59,10 @@ public class ModrinthAPIFetch {
         return "";
     }
 
+    public void putFacet(String facetName, String facetContent ){
+        facets.put(facetName, facetContent);
+    }
+
     public StringBuilder sendRequest(HashMap<String, String> facets, String search, int offset, int limit) throws IOException {
         //Build proper JSON format
         StringBuilder jsonFacets = new StringBuilder();
@@ -73,7 +76,9 @@ public class ModrinthAPIFetch {
             first = false;
         }
 
-        jsonFacets.append("[\"categories:fabric\"], [\"client_side:required\", \"client_side:optional\"]");
+        if (facets.isEmpty()){ jsonFacets.append("[\"categories:fabric\"], [\"client_side:required\", \"client_side:optional\"]");}
+        else { jsonFacets.append(", [\"categories:fabric\"], [\"client_side:required\", \"client_side:optional\"]"); }
+
         jsonFacets.append("]");
         System.out.println("Formatted Modrinth facets: \n" + jsonFacets.toString());
 
