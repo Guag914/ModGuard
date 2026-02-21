@@ -34,7 +34,7 @@ public class InstallerScreen extends Screen {
     //Scrolling
     int ys; /**ONLY ADD HEIGHT AND OFFSET FOR PROPER SPACING**/
 
-    ButtonWidget API_CALL;
+    CustomButtonWidget API_CALL;
     ButtonWidget NEXT_PAGE;
     ButtonWidget PREV_PAGE;
 
@@ -59,22 +59,24 @@ public class InstallerScreen extends Screen {
 
         ys+=20-offsetY;
 
-        API_CALL = ButtonWidget.builder(Text.translatable("button.ModGuard.callAPI"),
-                button -> {this.run();}
-        ).dimensions(this.width / 2 - 100, ys, 200, 20).build();
-        addDrawableChild(API_CALL);
+//        API_CALL = ButtonWidget.builder(Text.translatable("button.ModGuard.callAPI"),
+//                button -> {this.run();}
+//        ).dimensions(this.width / 2 - 100, ys, 200, 20).build();
+//        addDrawableChild(API_CALL);
+
+        API_CALL = new CustomButtonWidget(this.width / 2 - 100, ys, 200, 20, "button.ModGuard.callAPI",
+                button -> this.run()
+        ); addDrawableChild(API_CALL);
 
         ys+=20-offsetY;
 
-        PREV_PAGE = ButtonWidget.builder(Text.translatable("button.ModGuard.prevpg"),
-                button -> { pageNum--; updateOffset(); this.run();}
-        ).dimensions(5, ys, 50, 20).build();
-        addDrawableChild(PREV_PAGE);
+        PREV_PAGE = new CustomButtonWidget(5, ys, 50, 20, "button.ModGuard.prevpg",
+                button -> {pageNum--; updateOffset(); this.run();}
+        ); addDrawableChild(PREV_PAGE);
 
-        NEXT_PAGE = ButtonWidget.builder(Text.translatable("button.ModGuard.nextpg"),
-                button -> { pageNum++; updateOffset(); this.run();}
-        ).dimensions(this.width-55, ys, 50, 20).build();
-        addDrawableChild(NEXT_PAGE);
+        NEXT_PAGE = new CustomButtonWidget(this.width-55, ys, 50, 20, "button.ModGuard.nextpg",
+                button -> {pageNum++; updateOffset(); this.run();}
+        ); addDrawableChild(NEXT_PAGE);
 
         ys+=20-offsetY;
 

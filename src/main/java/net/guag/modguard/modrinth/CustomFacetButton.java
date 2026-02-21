@@ -10,7 +10,7 @@ public class CustomFacetButton extends ButtonWidget {
     private boolean toggled;
     private String name;
     private String content;
-    private String distplayName;
+    private String displayName;
 
     public CustomFacetButton(int x, int y, int size, boolean initialState, String n, String c, String dn) {
         super(
@@ -26,14 +26,14 @@ public class CustomFacetButton extends ButtonWidget {
         this.toggled = initialState;
         this.name = n;
         this.content = c;
-        this.distplayName = dn;
+        this.displayName = dn;
     }
 
     public boolean isToggled() { return toggled; }
 
     public String name(){ return this.name; }
     public String content(){ return this.content; }
-    public String displayName(){ return this.distplayName; }
+    public String displayName(){ return this.displayName; }
 
     public void setOppositeToggled() { this.toggled = !this.toggled; }
 
@@ -56,7 +56,7 @@ public class CustomFacetButton extends ButtonWidget {
         context.fill(x, y, x + 1, y + h, 0xFF8c8f8d);           // left
         context.fill(x + w - 1, y, x + w, y + h, 0xFF8c8f8d);   // right
 
-        context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer, net.minecraft.text.Text.of(this.distplayName), x+w+2, y+1, 0xFF8c8f8d);
+        context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer, net.minecraft.text.Text.of(this.displayName), x+w+5, y+1, 0xFF8c8f8d);
 
     }
 }
